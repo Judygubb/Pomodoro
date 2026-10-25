@@ -1,7 +1,7 @@
 import '../css/index.css';
 import '../css/home_page.css';
 
-function MainView({ timer, isRunning, onPlay, onPause, onReset, onSkip}) {
+function MainView({ timer, isRunning, isBreak, onPlay, onPause, onReset, onSkip}) {
 
   const clickSound = new Audio('/sounds/click.mp3');
 
@@ -28,8 +28,6 @@ function MainView({ timer, isRunning, onPlay, onPause, onReset, onSkip}) {
   function handleSkipClick(){
     playSound(clickSound);
     if (onSkip) onSkip();
-
-    console.log("Skip");
   };
 
   return (

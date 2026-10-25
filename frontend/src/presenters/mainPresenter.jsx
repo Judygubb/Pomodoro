@@ -4,7 +4,7 @@ import MainView from '../views/mainView.jsx';
 const ORCHESTRATOR_URL = 'http://localhost:8000';
 
 export default function MainPresenter() {
-  const [timerData, setTimerData] = useState({ formatted_time: "25:00", is_running: false });
+  const [timerData, setTimerData] = useState({ formatted_time: "25:00", is_running: false, is_break: false});
 
   // Fetch initial timer state
   useEffect(() => {
@@ -95,8 +95,34 @@ export default function MainPresenter() {
   };
 
   // Skipping logic
-  const handleSkip = () => {
-    console.log("Skip logic goes here");
+  const handleSkip = async () => {
+    if (timerData.is_break) {
+      try {
+        const response = await fetch(`${ORCHESTRATOR_URL}/api/timer/work`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setTimerData(data);
+        }
+      } catch (error) {
+        console.error("Error resetting timer:", error);
+      }
+    } else {
+      try {
+        const response = await fetch(`${ORCHESTRATOR_URL}/api/timer/break`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setTimerData(data);
+        }
+      } catch (error) {
+        console.error("Error resetting timer:", error);
+      }
+    }
   };
 
   // Passing props to view
@@ -104,6 +130,7 @@ export default function MainPresenter() {
     <MainView 
       timer={timerData.formatted_time}
       isRunning={timerData.is_running}
+      isBreak={timerData.is_break}
       onPlay={handlePlay}
       onPause={handlePause}
       onReset={handleReset}

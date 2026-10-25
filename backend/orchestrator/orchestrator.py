@@ -47,3 +47,19 @@ def reset_timer():
         return response.json()
     except requests.exceptions.ConnectionError:
         return {"error": "Timer service is offline"}
+
+@app.post("/api/timer/break")
+def break_timer():
+    try:
+        response = requests.post(f"{TIMER_SERVICE_URL}/break")
+        return response.json()
+    except requests.exceptions.ConnectionError:
+        return {"error": "Timer service is offline"}
+
+@app.post("/api/timer/work")
+def work_timer():
+    try:
+        response = requests.post(f"{TIMER_SERVICE_URL}/work")
+        return response.json()
+    except requests.exceptions.ConnectionError:
+        return {"error": "Timer service is offline"}
