@@ -37,6 +37,11 @@
   background: url('/icons/break_tomato.svg') no-repeat center;
 }
 
+.tomato.break {
+  transition: all 0.2s ease;
+  background: url('/icons/break_tomato.svg') no-repeat center;
+}
+
 .timer {
   font-size: 48px;
   font-weight: bold;

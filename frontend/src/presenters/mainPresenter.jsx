@@ -6,7 +6,7 @@ const ORCHESTRATOR_URL = 'http://localhost:8000';
 export default function MainPresenter() {
   const [timerData, setTimerData] = useState({ formatted_time: "25:00", is_running: false });
 
-  // Fetch initial timer state from the backend on load
+  // Fetch initial timer state
   useEffect(() => {
     async function fetchState() {
       try {
@@ -22,7 +22,7 @@ export default function MainPresenter() {
     fetchState();
   }, []);
 
-  // Poll the backend every second when the timer is running (NOW INSIDE THE COMPONENT)
+  // Live polling
   useEffect(() => {
     let interval = null;
 
@@ -46,9 +46,9 @@ export default function MainPresenter() {
     };
   }, [timerData.is_running]);
 
+  // Starting timer logic
   const handlePlay = async () => {
     try {
-      console.log("play: presenter");
       const response = await fetch(`${ORCHESTRATOR_URL}/api/timer/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -62,7 +62,8 @@ export default function MainPresenter() {
     }
   };
 
-  const handleBack = async () => {
+  // Pausing timer logic
+  const handlePause = async () => {
     try {
       const response = await fetch(`${ORCHESTRATOR_URL}/api/timer/pause`, {
         method: 'POST',
@@ -77,16 +78,18 @@ export default function MainPresenter() {
     }
   };
 
+  // Skipping logic
   const handleSkip = () => {
     console.log("Skip logic goes here");
   };
 
-  // Pass state and actions down to your view
+  // Passing props to view
   return (
     <MainView 
       timer={timerData.formatted_time}
+      isRunning={timerData.is_running}
       onPlay={handlePlay}
-      onBack={handleBack}
+      onPause={handlePause}
       onSkip={handleSkip}
     />
   );

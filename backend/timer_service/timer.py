@@ -37,6 +37,7 @@ class Timer:
         secs = self.time_remaining % 60
         return f"{mins:02d}:{secs:02d}"
 
+
 # Instantiate a global timer object for this service
 timer_instance = Timer()
 

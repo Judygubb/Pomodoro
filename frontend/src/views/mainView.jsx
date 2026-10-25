@@ -1,8 +1,7 @@
-import { useState } from 'react'
 import '../css/index.css';
 import '../css/home_page.css';
 
-function MainView({ timer, onPlay, onBack, onSkip }) {
+function MainView({ timer, isRunning, onPlay, onPause, onSkip}) {
 
   const clickSound = new Audio('/sounds/click.mp3');
 
@@ -13,14 +12,16 @@ function MainView({ timer, onPlay, onBack, onSkip }) {
 
   function handlePlayClick(){
     playSound(clickSound);
-    if (onPlay) onPlay();
 
-    console.log("Play");
+    if (isRunning) {
+      if (onPause) onPause();
+    } else {
+      if (onPlay) onPlay();
+    }
   };
 
   function handleBackClick(){
     playSound(clickSound);
-    if (onBack) onBack();
 
     console.log("Back");
   };
@@ -44,7 +45,7 @@ function MainView({ timer, onPlay, onBack, onSkip }) {
           <div className="buttons">
             <button className="button button-back" onClick={handleBackClick}></button>
 
-            <button className="button button-play" onClick={handlePlayClick}></button>
+            <button className={`button button-play ${isRunning ? 'running' : ''}`} onClick={handlePlayClick}></button>
             
             <button className="button button-skip" onClick={handleSkipClick}></button>
           </div>
