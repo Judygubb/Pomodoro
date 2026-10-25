@@ -78,6 +78,22 @@ export default function MainPresenter() {
     }
   };
 
+  // reseting timer logic
+  const handleReset = async () => {
+    try {
+      const response = await fetch(`${ORCHESTRATOR_URL}/api/timer/reset`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setTimerData(data);
+      }
+    } catch (error) {
+      console.error("Error reseting timer:", error);
+    }
+  };
+
   // Skipping logic
   const handleSkip = () => {
     console.log("Skip logic goes here");
@@ -90,6 +106,7 @@ export default function MainPresenter() {
       isRunning={timerData.is_running}
       onPlay={handlePlay}
       onPause={handlePause}
+      onReset={handleReset}
       onSkip={handleSkip}
     />
   );

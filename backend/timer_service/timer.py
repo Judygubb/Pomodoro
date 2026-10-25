@@ -54,3 +54,8 @@ def start_timer():
 def pause_timer():
     timer_instance.pause()
     return timer_instance.get_state()
+
+@app.post("/reset")
+def reset_timer():
+    timer_instance.reset()
+    return timer_instance.get_state()

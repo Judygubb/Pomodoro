@@ -1,7 +1,7 @@
 import '../css/index.css';
 import '../css/home_page.css';
 
-function MainView({ timer, isRunning, onPlay, onPause, onSkip}) {
+function MainView({ timer, isRunning, onPlay, onPause, onReset, onSkip}) {
 
   const clickSound = new Audio('/sounds/click.mp3');
 
@@ -20,10 +20,9 @@ function MainView({ timer, isRunning, onPlay, onPause, onSkip}) {
     }
   };
 
-  function handleBackClick(){
+  function handleResetClick(){
     playSound(clickSound);
-
-    console.log("Back");
+    if (onReset) onReset();
   };
 
   function handleSkipClick(){
@@ -43,7 +42,7 @@ function MainView({ timer, isRunning, onPlay, onPause, onSkip}) {
           </div>
           
           <div className="buttons">
-            <button className="button button-back" onClick={handleBackClick}></button>
+            <button className="button button-back" onClick={handleResetClick}></button>
 
             <button className={`button button-play ${isRunning ? 'running' : ''}`} onClick={handlePlayClick}></button>
             
