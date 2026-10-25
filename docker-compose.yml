@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  timer-service:
+    build: ./backend/timer_service
+    ports:
+      - "8001:8001"
+    networks:
+      - pomodoro-net
+
+  orchestrator:
+    build: ./backend/orchestrator
+    ports:
+      - "8000:8000"
+    environment:
+      - TIMER_SERVICE_URL=http://timer-service:8001  # Docker DNS lets containers talk by service name!
+    depends_on:
+      - timer-service
+    networks:
+      - pomodoro-net
+
+networks:
+  pomodoro-net:
+    driver: bridge

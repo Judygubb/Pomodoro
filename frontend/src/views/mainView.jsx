@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import './css/index.css'
-import './css/home_page.css'
+import '../css/index.css';
+import '../css/home_page.css';
 
-function App() {
+function MainView({ timer, onPlay, onBack, onSkip }) {
 
   const clickSound = new Audio('/sounds/click.mp3');
 
@@ -11,18 +11,24 @@ function App() {
     audio.play().catch(err => console.log("Audio play deferred:", err));
   };
 
-  function playButtonClick(){
+  function handlePlayClick(){
     playSound(clickSound);
+    if (onPlay) onPlay();
+
     console.log("Play");
   };
 
-  function backButtonClick(){
+  function handleBackClick(){
     playSound(clickSound);
+    if (onBack) onBack();
+
     console.log("Back");
   };
 
-  function skipButtonClick(){
+  function handleSkipClick(){
     playSound(clickSound);
+    if (onSkip) onSkip();
+
     console.log("Skip");
   };
 
@@ -32,15 +38,15 @@ function App() {
         <div className="pomodoro-container"> 
 
           <div className="tomato">
-            <h1 className="timer">00:00</h1>
+            <h1 className="timer">{timer || "00:00"}</h1>
           </div>
           
           <div className="buttons">
-            <button className="button button-back" onClick={backButtonClick}></button>
+            <button className="button button-back" onClick={handleBackClick}></button>
 
-            <button className="button button-play" onClick={playButtonClick}></button>
+            <button className="button button-play" onClick={handlePlayClick}></button>
             
-            <button className="button button-skip" onClick={skipButtonClick}></button>
+            <button className="button button-skip" onClick={handleSkipClick}></button>
           </div>
 
         </div>
@@ -49,4 +55,4 @@ function App() {
   )
 }
 
-export default App
+export default MainView
