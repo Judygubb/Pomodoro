@@ -1,11 +1,16 @@
+import React, { useState } from 'react';
+
 import '../css/index.css';
 import '../css/middle_container.css';
 import '../css/left_&_right_containers.css';
 
 import TimerComponent from '../components/timerComponent.jsx'
 import ControlComponent from '../components/controlComponent.jsx'
+import MusicPanel from '../components/musicPanel.jsx'
 
 function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished}) {
+
+  const [isMusicOpen, setIsMusicOpen] = useState(false);
 
   const clickSound = new Audio('/sounds/click.mp3');
   const alarmSound = new Audio('/sounds/timer_done.mp3');
@@ -39,6 +44,11 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
     if (onSkip) onSkip();
   };
 
+  function handleMusicClick() {
+    playSound(clickSound);
+    setIsMusicOpen(true)
+  }
+
   return (
     <>
     <div className={`background-container ${isBreak ? 'break' : ''}`}>
@@ -47,7 +57,7 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
       <div className="section">
         <div className="top-left-buttons">
           <div className="music-title-container">
-            <button className="button button-music"></button>
+            <button className="button button-music" onClick={handleMusicClick}></button>
             <div className="text">Jane Doe - Kenshi Yonezu x Hikaru Utada</div>
           </div>
           <button className="button button-mute"></button>
@@ -85,6 +95,8 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
       </div>
 
     </div>
+    <MusicPanel isMusicOpen={isMusicOpen}
+                onClose={() => setIsMusicOpen(false)}/>
     </>
   )
 }

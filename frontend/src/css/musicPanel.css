@@ -1,0 +1,39 @@
+/* Dark semi-transparent background behind the panel */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1); /* dims the background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* ensures it sits on top */
+}
+
+/* The floating box itself */
+.music-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* perfectly centers it */
+  width: 90%;
+  max-width: 450px;
+  background: #E3E3D7; 
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* sits above the overlay */
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: #000000;
+  font-size: 18px;
+  cursor: pointer;
+}

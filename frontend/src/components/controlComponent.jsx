@@ -1,4 +1,4 @@
-export default function TimerSection({
+export default function ControlComponent({
     progress,
     isRunning,
     handleResetClick,

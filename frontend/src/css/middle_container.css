@@ -72,15 +72,6 @@
   transition: width 0.3s ease; 
 }
 
-.text {
-  font-family: "Inter";
-  color: #000000;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 100;
-  line-height: normal;
-}
-
 .buttons {
   display: flex;
   justify-content: center;
