@@ -4,6 +4,7 @@ import '../css/home_page.css';
 function MainView({ timer, isRunning, isBreak, onPlay, onPause, onReset, onSkip}) {
 
   const clickSound = new Audio('/sounds/click.mp3');
+  const alarmSound = new Audio('/sounds/timer_done.mp3');
 
   const playSound = (audio) => {
     audio.currentTime = 0; // Reset sound to start if clicked rapidly
@@ -32,10 +33,10 @@ function MainView({ timer, isRunning, isBreak, onPlay, onPause, onReset, onSkip}
 
   return (
     <>
-      <div className="background">
+      <div className={`background background.break ${isBreak ? 'break' : ''}`}>
         <div className="pomodoro-container"> 
 
-          <div className="tomato">
+          <div className={`tomato tomato.break ${isBreak ? 'break' : ''}`}>
             <h1 className="timer">{timer || "00:00"}</h1>
           </div>
           
