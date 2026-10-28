@@ -1,5 +1,6 @@
 import '../css/index.css';
-import '../css/home_page.css';
+import '../css/middle_container.css';
+import '../css/left_container.css';
 
 function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished}) {
 
@@ -37,7 +38,20 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
 
   return (
     <>
-      <div className={`background background.break ${isBreak ? 'break' : ''}`}>
+    <div className={`background-container background-container.break ${isBreak ? 'break' : ''}`}>
+
+      <div className="section">
+        <div className="top-left-buttons">
+          <div className="music-title-container">
+            <button className="button button-music"></button>
+            <div className="text">Jane Doe - Kenshi Yonezu x Hikaru Utada</div>
+          </div>
+           <button className="button button-mute"></button>
+           <button className="button button-settings"></button>
+        </div>
+      </div>
+
+      <div className="section">
         <div className="pomodoro-container"> 
 
           <div className={`tomato tomato.break ${isBreak ? 'break' : ''}`}>
@@ -51,19 +65,25 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
             ></div>
           </div>
 
-          <div className="task_title">Current Task: Taking out the trash</div>
+          <div className="text">Current Task: Taking out the trash</div>
 
           
           <div className="buttons">
-            <button className="button button-back" onClick={handleResetClick}></button>
+            <button className="button button-back" 
+                    onClick={handleResetClick}></button>
 
-            <button className={`button button-play ${isRunning ? 'running' : ''}`} onClick={handlePlayClick}></button>
+            <button className={`button button-play ${isRunning ? 'running' : ''}`} 
+                    onClick={handlePlayClick}></button>
             
-            <button className="button button-skip" onClick={handleSkipClick}></button>
+            <button className="button button-skip" 
+                    onClick={handleSkipClick}></button>
           </div>
 
         </div>
-      </div>
+    </div>
+
+  <div className="section"></div>
+</div>
     </>
   )
 }

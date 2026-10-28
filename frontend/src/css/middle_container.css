@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap');
 
-.background {
-  transition: all 0.2s ease;
-  background-color: #FFE9D3;
-}
-
-.background.break {
-  transition: all 0.2s ease;
-  background-color: #E8E4CA;
-}
-
 .pomodoro-container {
   display: flex;
   flex-direction: column;
@@ -69,7 +59,7 @@
   transition: width 0.3s ease; 
 }
 
-.task_title {
+.text {
   font-family: "Inter";
   color: #000000;
   font-size: 16px;

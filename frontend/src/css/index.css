@@ -2,3 +2,22 @@ body {
     margin : 0;
     padding: 0;
 }
+
+.background-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 rows of equal height */
+  height: 100vh;
+
+  transition: all 0.2s ease;
+  background-color: #FFE9D3;
+}
+
+.background-container.break {
+  transition: all 0.2s ease;
+  background-color: #E8E4CA;
+}
+
+.section {
+  flex: 1;  
+  background-color: transparent;
+}
