@@ -2,6 +2,9 @@ import '../css/index.css';
 import '../css/middle_container.css';
 import '../css/left_&_right_containers.css';
 
+import TimerComponent from '../components/timerComponent.jsx'
+import ControlComponent from '../components/controlComponent.jsx'
+
 function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished}) {
 
   const clickSound = new Audio('/sounds/click.mp3');
@@ -57,42 +60,19 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
         <div className="middle-container">
           <div className="section"></div>
 
-          <div className="section">
-            <div className={`tomato ${isBreak ? 'break' : ''}`}>
-              <h1 className="timer">{timer || "00:00"}</h1>
-            </div>
-          </div>
+          <TimerComponent 
+            isBreak={isBreak}
+            timer={timer}
+          />
 
           <div className="section">
-            <div className="control-container">
-              
-              <div className="progress-bar">
-                <div 
-                  className="progress-bar-fill" 
-                  style={{ width: `${progress}%` }}
-                ></div>
-              </div>
-
-              <div className="text">Current Task: Taking out the trash</div>
-
-              <div className="buttons">
-                <button 
-                  className="button button-back" 
-                  onClick={handleResetClick}
-                ></button>
-
-                <button 
-                  className={`button button-play ${isRunning ? 'running' : ''}`} 
-                  onClick={handlePlayClick}
-                ></button>
-                
-                <button 
-                  className="button button-skip" 
-                  onClick={handleSkipClick}
-                ></button>
-              </div>
-
-            </div>
+            <ControlComponent 
+              progress={progress}
+              isRunning={isRunning}
+              handleResetClick={handleResetClick}
+              handlePlayClick={handlePlayClick}
+              handleSkipClick={handleSkipClick}
+            />
           </div>
         </div>
       </div>

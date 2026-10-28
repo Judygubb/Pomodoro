@@ -19,6 +19,5 @@ body {
 
 .section {
   flex: 1;  
-  overflow: hidden;
   background-color: transparent;
 }
