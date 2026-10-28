@@ -8,14 +8,31 @@ services:
     networks:
       - pomodoro-net
 
+  music-service:
+    build: ./backend
+    container_name: pomodoro_music_service
+    ports:
+      - "8002:8002"
+    environment:
+      - PORT=8002
+    volumes:
+      # Persist SQLite database and uploaded audio files on your host machine
+      - ./backend/database.db:/app/database.db
+      - ./backend/uploads:/app/uploads
+    networks:
+      - pomodoro-net
+    restart: always
+
   orchestrator:
     build: ./backend/orchestrator
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Main entry point for your frontend
     environment:
-      - TIMER_SERVICE_URL=http://timer-service:8001  # Docker DNS lets containers talk by service name!
+      - TIMER_SERVICE_URL=http://timer-service:8001
+      - MUSIC_SERVICE_URL=http://music-service:8002 
     depends_on:
       - timer-service
+      - music-service
     networks:
       - pomodoro-net
 
