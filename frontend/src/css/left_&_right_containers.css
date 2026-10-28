@@ -1,0 +1,45 @@
+.top-left-buttons {
+  width: 100%;
+  height: auto;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;   
+}
+
+.music-title-container {
+  display: flex;
+  flex-direction: row; 
+  align-items: center; 
+}
+
+.button-music {
+  mask-image: url("/icons/music_icon.svg");
+}
+
+.button-mute {
+  mask-image: url("/icons/mute_button.svg");
+}
+
+.button-settings {
+  mask-image: url("/icons/settings_button.svg");
+}
+
+/* -----------------------  Right side ----------------------- */
+
+.button-menu {
+  mask-image: url("/icons/menu_button.svg");
+}
+
+.top-right-buttons {
+  width: 100%;
+  height: autp;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  gap: 6px;   
+}

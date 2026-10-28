@@ -1,6 +1,6 @@
 import '../css/index.css';
 import '../css/middle_container.css';
-import '../css/left_container.css';
+import '../css/left_&_right_containers.css';
 
 function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished}) {
 
@@ -82,7 +82,11 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
         </div>
     </div>
 
-  <div className="section"></div>
+  <div className="section">
+    <div className="top-right-buttons">
+      <button className="button button-menu"></button>
+    </div>
+  </div>
 </div>
     </>
   )
