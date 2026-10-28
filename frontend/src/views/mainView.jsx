@@ -96,7 +96,8 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
 
     </div>
     <MusicPanel isMusicOpen={isMusicOpen}
-                onClose={() => setIsMusicOpen(false)}/>
+                onClose={() => setIsMusicOpen(false)}
+                />
     </>
   )
 }
