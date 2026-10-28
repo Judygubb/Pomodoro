@@ -1,7 +1,7 @@
 import '../css/index.css';
 import '../css/home_page.css';
 
-function MainView({ timer, isRunning, isBreak, onPlay, onPause, onReset, onSkip}) {
+function MainView({ timer, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished}) {
 
   const clickSound = new Audio('/sounds/click.mp3');
   const alarmSound = new Audio('/sounds/timer_done.mp3');
@@ -11,9 +11,13 @@ function MainView({ timer, isRunning, isBreak, onPlay, onPause, onReset, onSkip}
     audio.play().catch(err => console.log("Audio play deferred:", err));
   };
 
+  if (isFinished) {
+  playSound(alarmSound);
+  if (onFinished) onFinished();
+  };
+
   function handlePlayClick(){
     playSound(clickSound);
-
     if (isRunning) {
       if (onPause) onPause();
     } else {

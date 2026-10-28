@@ -10,9 +10,11 @@ class Timer:
         self.time_remaining = duration
         self.is_running = False
         self.is_break = False
+        self.is_finished = False
 
     def start(self):
         self.is_running = True
+        self.is_finished = False
 
     def pause(self):
         self.is_running = False
@@ -20,6 +22,7 @@ class Timer:
     def reset(self):
         self.pause()
         self.time_remaining = self.duration
+        self.is_finished = False
 
     def break_timer(self):
         self.is_break = True
@@ -36,6 +39,7 @@ class Timer:
             "time_remaining": self.time_remaining,
             "is_running": self.is_running,
             "is_break": self.is_break,
+            "is_finished": self.is_finished,
             "duration": self.duration,
             "break_duration": self.break_duration,
             "formatted_time": self.get_formated_time()
@@ -44,6 +48,9 @@ class Timer:
     def tick(self):
         if self.is_running and self.time_remaining > 0:
             self.time_remaining -= 1
+            return self.get_state()
+        elif self.time_remaining == 0:
+            self.is_finished = True
             return self.get_state()
         return self.get_state()
 
