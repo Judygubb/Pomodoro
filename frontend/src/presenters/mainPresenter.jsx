@@ -159,6 +159,7 @@ export default function MainPresenter() {
   return (
     <MainView 
       timer={timerData.formatted_time}
+      progress={timerData.progress}
       isRunning={timerData.is_running}
       isBreak={timerData.is_break}
       isFinished={timerData.is_finished}

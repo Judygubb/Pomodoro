@@ -1,7 +1,7 @@
 import '../css/index.css';
 import '../css/home_page.css';
 
-function MainView({ timer, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished}) {
+function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished}) {
 
   const clickSound = new Audio('/sounds/click.mp3');
   const alarmSound = new Audio('/sounds/timer_done.mp3');
@@ -47,7 +47,7 @@ function MainView({ timer, isRunning, isBreak, isFinished, onPlay, onPause, onRe
           <div className="progress-bar-container">
             <div 
               className="progress-bar-fill" 
-              style={{ width: '30%' }} 
+              style={{ width: `${progress}%` }} 
             ></div>
           </div>
 

@@ -42,8 +42,12 @@ class Timer:
             "is_finished": self.is_finished,
             "duration": self.duration,
             "break_duration": self.break_duration,
-            "formatted_time": self.get_formated_time()
+            "formatted_time": self.get_formated_time(),
+            "progress": self.progress()
         }
+
+    def progress(self):
+        return 100-((self.time_remaining / self.duration) * 100)
 
     def tick(self):
         if self.is_running and self.time_remaining > 0:
