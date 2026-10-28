@@ -43,6 +43,16 @@ function MainView({ timer, isRunning, isBreak, isFinished, onPlay, onPause, onRe
           <div className={`tomato tomato.break ${isBreak ? 'break' : ''}`}>
             <h1 className="timer">{timer || "00:00"}</h1>
           </div>
+
+          <div className="progress-bar-container">
+            <div 
+              className="progress-bar-fill" 
+              style={{ width: '30%' }} 
+            ></div>
+          </div>
+
+          <div className="task_title">Current Task: Taking out the trash</div>
+
           
           <div className="buttons">
             <button className="button button-back" onClick={handleResetClick}></button>

@@ -53,6 +53,31 @@
   margin-top: 100px;
 }
 
+.progress-bar-container {
+  width: 400px;
+  height: 4px;
+  background-color: #CDDEB2;
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #00765A; 
+  width: 0%; /* Will change dynamically */
+  transition: width 0.3s ease; 
+}
+
+.task_title {
+  font-family: "Inter";
+  color: #000000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 100;
+  line-height: normal;
+}
+
 .buttons {
   display: flex;
   justify-content: center;
