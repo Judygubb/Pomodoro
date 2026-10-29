@@ -69,7 +69,7 @@ def work_timer():
         return {"error": "Timer service is offline"}
 
 
-# --- MUSIC SERVICE PROXIES ---
+# --- MUSIC SERVICE ---
 
 @app.get("/api/songs")
 def get_songs():

@@ -37,3 +37,60 @@
   font-size: 18px;
   cursor: pointer;
 }
+
+.song-list {
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.song-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.song-row:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.song-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.song-name {
+  font-weight: bold;
+  color: #fff;
+}
+
+.song-artist {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.play-btn {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.play-btn:hover {
+  background-color: #4338ca;
+}
+
+.audio-player-wrapper {
+  margin-top: 20px;
+  width: 100%;
+}

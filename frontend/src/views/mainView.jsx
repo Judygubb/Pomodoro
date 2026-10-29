@@ -8,7 +8,7 @@ import TimerComponent from '../components/timerComponent.jsx'
 import ControlComponent from '../components/controlComponent.jsx'
 import MusicPanel from '../components/musicPanel.jsx'
 
-function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished}) {
+function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onPause, onReset, onSkip, onFinished, songsInPlaylist}) {
 
   const [isMusicOpen, setIsMusicOpen] = useState(false);
 
@@ -96,6 +96,7 @@ function MainView({ timer, progress, isRunning, isBreak, isFinished, onPlay, onP
 
     </div>
     <MusicPanel isMusicOpen={isMusicOpen}
+                songs={songsInPlaylist}
                 onClose={() => setIsMusicOpen(false)}
                 />
     </>

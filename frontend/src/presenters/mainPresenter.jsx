@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import MainView from '../views/mainView.jsx';
 
+import { useMusic } from '../hooks/useMusic';
+
 const ORCHESTRATOR_URL = 'http://localhost:8000';
 
 export default function MainPresenter() {
+
+  const musicProps = useMusic();
   const [timerData, setTimerData] = useState({ formatted_time: "25:00", is_running: false, is_break: false, is_finished: false});
 
   // Fetch initial timer state
@@ -155,6 +159,10 @@ export default function MainPresenter() {
     }
   };
 
+  //----------------------- music service api calls --------------------------
+
+
+
   // Passing props to view
   return (
     <MainView 
@@ -168,6 +176,8 @@ export default function MainPresenter() {
       onReset={handleReset}
       onSkip={handleSkip}
       onFinished={handleFinished}
+
+      songsInPlaylist={musicProps.songs}  // passed songs and queue
     />
   );
 }
