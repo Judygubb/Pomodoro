@@ -15,7 +15,7 @@ app.add_middleware(
 )
 
 class MusicService:
-    def __init__(self, db_path="database.db", upload_dir="uploads"):
+    def __init__(self, db_path="data/database.db", upload_dir="uploads"):
         self.db_path = db_path
         self.upload_dir = upload_dir
         os.makedirs(self.upload_dir, exist_ok=True)
@@ -33,6 +33,50 @@ class MusicService:
                 )
             """)
             conn.commit()
+
+            # Check if the songs table is empty
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM songs")
+            count = cursor.fetchone()[0]
+
+            if count == 0:
+                self._seed_default_songs(conn, cursor)
+
+
+    def _seed_default_songs(self, conn, cursor):
+        """Copies default sample MP3s from initial_songs/ and inserts them into DB."""
+        initial_songs_dir = "initial_songs"
+        
+        # Default tracks definition
+        default_tracks = [
+            {
+                "name": "Once Upon A Time",
+                "artist": "Toby Fox",
+                "filename": "once_upon_a_time.mp3"
+            },
+            {
+                "name": "Home",
+                "artist": "Toby Fox",
+                "filename": "home.mp3"
+            }
+        ]
+
+        for track in default_tracks:
+            src_path = os.path.join(initial_songs_dir, track["filename"])
+            dest_path = os.path.join(self.upload_dir, track["filename"])
+
+            # If the sample file exists in your repository image, copy it to uploads
+            if os.path.exists(src_path):
+                if not os.path.exists(dest_path):
+                    with open(src_path, "rb") as f_src, open(dest_path, "wb") as f_dst:
+                        f_dst.write(f_src.read())
+
+                # Insert metadata into SQLite
+                cursor.execute(
+                    "INSERT INTO songs (name, artist, file_path) VALUES (?, ?, ?)",
+                    (track["name"], track["artist"], dest_path)
+                )
+        conn.commit()
 
     def get_all_songs(self):
         """Retrieves all song metadata from SQLite."""

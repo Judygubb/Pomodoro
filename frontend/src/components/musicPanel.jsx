@@ -1,4 +1,4 @@
-import MusicManager from './musicManager';
+//import MusicManager from './musicManager';
 
 import '../css/musicPanel.css';
 import '../css/index.css';
@@ -12,8 +12,6 @@ export default function MusicPanel({ isMusicOpen, onClose }) {
         <button className="close-btn" onClick={onClose}>✕</button>
         
         <div className="text">Music Library</div>
-
-        <MusicManager />
       </div>
     </div>
   );

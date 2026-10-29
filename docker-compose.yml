@@ -9,7 +9,7 @@ services:
       - pomodoro-net
 
   music-service:
-    build: ./backend
+    build: ./backend/music_service
     container_name: pomodoro_music_service
     ports:
       - "8002:8002"
@@ -17,7 +17,7 @@ services:
       - PORT=8002
     volumes:
       # Persist SQLite database and uploaded audio files on your host machine
-      - ./backend/database.db:/app/database.db
+      - ./backend/data:/app/data
       - ./backend/uploads:/app/uploads
     networks:
       - pomodoro-net
